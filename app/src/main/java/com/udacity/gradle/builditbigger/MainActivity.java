@@ -1,8 +1,11 @@
 package com.udacity.gradle.builditbigger;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+
 import android.support.v7.app.AppCompatActivity;
+import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,9 +15,10 @@ import com.example.jokelib.JavaJoke;
 import com.example.aarlib.AndroidDisplayActivity;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements EndpointsAsyncTask.AsyncResponse {
 
     private static final String JAVA_JOKE = "com.example.jokelib.JavaJoke.Joke";
+    private EndpointsAsyncTask mAsyncTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +50,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void tellJoke(View view) {
-        JavaJoke newJoke = new JavaJoke();
-        Toast.makeText(this, newJoke.getJoke(), Toast.LENGTH_SHORT).show();
-        Intent androidDisplayIntent = new Intent(this, AndroidDisplayActivity.class);
-        androidDisplayIntent.putExtra(JAVA_JOKE, newJoke.getJoke());
-        startActivity(androidDisplayIntent);
+
+        mAsyncTask = new EndpointsAsyncTask();
+        mAsyncTask.delegate = this;
+        mAsyncTask.execute();
+
     }
 
+    @Override
+    public void processFinish(String output) {
+
+        Intent androidDisplayIntent = new Intent(this, AndroidDisplayActivity.class);
+        androidDisplayIntent.putExtra(JAVA_JOKE, output);
+        startActivity(androidDisplayIntent);
+
+    }
 }

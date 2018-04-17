@@ -1,5 +1,7 @@
 package com.udacity.gradle.builditbigger.backend;
 
+import com.example.jokelib.JavaJoke;
+
 /** The object model for the data we are sending through endpoints */
 public class MyBean {
 
