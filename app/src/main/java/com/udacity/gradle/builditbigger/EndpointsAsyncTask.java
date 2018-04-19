@@ -17,7 +17,6 @@ public class EndpointsAsyncTask extends AsyncTask< Void, Void, String> {
     public AsyncResponse delegate = null;
 
     private static MyApi myApiService = null;
-    private Context context;
 
     @Override
     protected String doInBackground(Void... params) {
@@ -38,9 +37,6 @@ public class EndpointsAsyncTask extends AsyncTask< Void, Void, String> {
 
             myApiService = builder.build();
         }
-
-//            context = params[0].first;
-//            String name = params[0].second;
 
         try {
             return myApiService.makeMeLaugh().execute().getJoke();
