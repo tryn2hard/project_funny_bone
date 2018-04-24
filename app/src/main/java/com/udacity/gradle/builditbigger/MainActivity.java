@@ -15,7 +15,6 @@ import com.example.aarlib.AndroidDisplayActivity;
 
 public class MainActivity extends AppCompatActivity implements EndpointsAsyncTask.AsyncResponse {
 
-    private static final String JAVA_JOKE = "com.example.jokelib.JavaJoke.Joke";
     private EndpointsAsyncTask mAsyncTask;
 
     @Override
@@ -59,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements EndpointsAsyncTas
     public void processFinish(String output) {
 
         Intent androidDisplayIntent = new Intent(this, AndroidDisplayActivity.class);
-        androidDisplayIntent.putExtra(JAVA_JOKE, output);
+        androidDisplayIntent.putExtra(AndroidDisplayActivity.JAVA_JOKE, output);
         startActivity(androidDisplayIntent);
 
     }

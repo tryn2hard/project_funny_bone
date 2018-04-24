@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 public class AndroidDisplayActivity extends AppCompatActivity {
 
-    private static final String JAVA_JOKE = "com.example.jokelib.JavaJoke.Joke";
+    public static final String JAVA_JOKE = "com.example.jokelib.JavaJoke.Joke";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,7 +15,7 @@ public class AndroidDisplayActivity extends AppCompatActivity {
         setContentView(R.layout.activity_android_display);
         String javaJoke = "No jokes are available currently :(";
 
-        if(getIntent() != null){
+        if(getIntent().hasExtra(JAVA_JOKE)){
             Intent startingActivityIntent = getIntent();
             javaJoke = startingActivityIntent.getStringExtra(JAVA_JOKE);
         }
